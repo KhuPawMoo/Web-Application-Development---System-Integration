@@ -32,6 +32,11 @@ button{cursor:pointer}
 .breadcrumb{color:var(--muted);font-size:13px}.breadcrumb strong{color:var(--ink);font-weight:600}
 .topbar-right{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:12px}
 .topbar-actions{display:flex;align-items:center;gap:18px}
+.store-actions{display:none;align-items:center;gap:14px}
+.app[data-view="store"] .store-actions{display:flex}
+.app[data-view="store"] .topbar-right{display:none}
+.cart-open{display:flex;align-items:center;gap:8px;border:1px solid #dfe5e9;border-radius:7px;background:#fff;padding:7px 10px;color:#40515e;font-weight:600;font-size:12px}
+.cart-count{display:grid;place-items:center;min-width:19px;height:19px;padding:0 5px;border-radius:20px;background:var(--accent);color:#fff;font-size:10px}
 .view-switch{display:flex;gap:3px;padding:3px;border:1px solid var(--line);border-radius:8px;background:#f4f6f7}
 .view-switch button{border:0;border-radius:5px;background:transparent;color:var(--muted);padding:6px 10px;font-size:12px;font-weight:600}
 .view-switch button[aria-pressed="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 3px rgba(24,39,50,.12)}
@@ -135,9 +140,40 @@ dialog::backdrop{background:rgba(15,29,31,.45)}
 .store-rating{color:#697783;font-size:11px;white-space:nowrap}
 .store-rating span{color:#e6a536}
 .store-card-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid #edf0f2}
+.store-card-actions{display:flex;align-items:center;gap:7px}
 .availability{color:#32805a;font-size:11px}
 .availability.unavailable{color:var(--danger)}
 .store-details{border:1px solid #dfe5e9;border-radius:6px;background:#fff;padding:6px 9px;color:#40515e;font-size:11px;font-weight:600}
+.add-button,.checkout-button{border:1px solid var(--accent);border-radius:6px;background:var(--accent);padding:7px 10px;color:#fff;font-size:11px;font-weight:650}
+.add-button:disabled,.checkout-button:disabled{opacity:.5;cursor:not-allowed}
+.detail-cart{border:1px solid var(--accent);border-radius:6px;background:var(--accent);padding:8px 12px;color:#fff;font-size:12px;font-weight:650}
+.cart-body{padding:18px 20px}
+.cart-empty{padding:30px 12px;text-align:center;color:var(--muted)}
+.cart-items{display:grid;gap:12px;max-height:min(50vh,420px);overflow:auto}
+.cart-item{display:grid;grid-template-columns:58px minmax(0,1fr) auto;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid #edf0f2}
+.cart-item img{width:58px;height:58px;border:1px solid var(--line);border-radius:7px;background:#f8f9fa;object-fit:contain}
+.cart-item-name{font-size:12px;font-weight:650}
+.cart-item-price{margin-top:3px;color:var(--muted);font-size:11px}
+.cart-qty{display:flex;align-items:center;gap:6px}
+.qty-button{width:26px;height:26px;border:1px solid #dfe5e9;border-radius:5px;background:#fff;color:#40515e}
+.qty-button:disabled{opacity:.4;cursor:not-allowed}
+.qty-value{min-width:18px;text-align:center;font-size:12px;font-variant-numeric:tabular-nums}
+.cart-line-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:6px}
+.remove-item{border:0;background:transparent;padding:3px 0;color:var(--danger);font-size:10px}
+.cart-summary{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.summary-row{display:flex;justify-content:space-between;gap:12px;margin:6px 0;color:#586674;font-size:12px}
+.summary-row.total{margin-top:12px;color:var(--ink);font-size:14px;font-weight:700}
+.cart-note,.checkout-note{margin:12px 0 0;color:var(--muted);font-size:11px}
+.cart-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 20px;border-top:1px solid var(--line)}
+.checkout-dialog-body{padding:20px}
+.checkout-form{display:grid;gap:13px}
+.checkout-form label{display:grid;gap:5px;color:#485965;font-size:12px;font-weight:600}
+.checkout-form input{height:39px;border:1px solid #dfe5e9;border-radius:6px;padding:0 10px}
+.checkout-total{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line);font-size:13px;font-weight:700}
+.checkout-confirmation{padding:24px 12px;text-align:center}
+.confirmation-icon{display:grid;place-items:center;width:44px;height:44px;margin:0 auto 12px;border-radius:50%;background:#e8f5ee;color:#2d8056;font-size:22px}
+.checkout-confirmation h3{margin:0 0 6px;font-size:18px}
+.checkout-confirmation p{margin:0;color:var(--muted);font-size:12px}
 .store-empty{grid-column:1/-1;padding:52px 20px;text-align:center;border:1px dashed var(--line);border-radius:9px;color:var(--muted)}
 .store-empty.error{border-color:#edcaca;color:var(--danger)}
 .store-retry{margin-left:8px;border:1px solid #dfe5e9;border-radius:5px;background:white;padding:6px 10px;color:var(--ink);font-size:12px}
@@ -146,7 +182,7 @@ dialog::backdrop{background:rgba(15,29,31,.45)}
 .store-pagination button:disabled{opacity:.45;cursor:not-allowed}
 @media(max-width:1050px){.sidebar{width:205px}.main{margin-left:205px}.topbar{padding:0 24px}.content{padding:28px 24px 40px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:1050px){.store-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:720px){.sidebar{position:static;width:auto;height:auto;padding:12px 14px;display:block}.brand{padding:0 4px 12px}.nav-label,.sidebar-bottom{display:none}.nav{display:flex;overflow-x:auto}.nav a{white-space:nowrap;padding:8px 10px}.main{margin-left:0}.topbar{height:58px;padding:0 14px}.topbar-actions{gap:8px}.topbar-right{font-size:0}.topbar-right .live-dot{margin:0}.view-switch button{padding:6px 8px;font-size:11px}.content{padding:23px 15px 32px}.page-heading{margin-bottom:20px}.updated{display:none}.stats{gap:10px}.stat{padding:14px}.stat-value{font-size:21px}.filters{flex-wrap:wrap;padding:13px}.search-wrap{flex-basis:100%;max-width:none}.filters select{flex:1;min-width:0}.reset{margin-left:auto}.panel-heading{padding:16px}.table-footer{padding:12px;flex-wrap:wrap}.table-footer>span{width:100%}.storefront{padding:25px 15px 36px}.store-heading{align-items:flex-start;flex-direction:column;margin-bottom:19px}.store-heading h1{font-size:25px}.store-controls{flex-wrap:wrap}.store-controls input{flex-basis:100%}.store-controls select{flex:1;min-width:0}.store-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.store-image-wrap{height:165px}.store-card-body{padding:12px}.store-name{font-size:13px;min-height:38px}.store-price{font-size:15px}.store-card-footer{align-items:flex-start;flex-direction:column}}
+@media(max-width:720px){.sidebar{position:static;width:auto;height:auto;padding:12px 14px;display:block}.brand{padding:0 4px 12px}.nav-label,.sidebar-bottom{display:none}.nav{display:flex;overflow-x:auto}.nav a{white-space:nowrap;padding:8px 10px}.main{margin-left:0}.topbar{height:58px;padding:0 14px}.topbar-actions{gap:8px}.store-actions{gap:8px}.cart-open{padding:6px 8px;font-size:11px}.topbar-right{font-size:0}.topbar-right .live-dot{margin:0}.view-switch button{padding:6px 8px;font-size:11px}.content{padding:23px 15px 32px}.page-heading{margin-bottom:20px}.updated{display:none}.stats{gap:10px}.stat{padding:14px}.stat-value{font-size:21px}.filters{flex-wrap:wrap;padding:13px}.search-wrap{flex-basis:100%;max-width:none}.filters select{flex:1;min-width:0}.reset{margin-left:auto}.panel-heading{padding:16px}.table-footer{padding:12px;flex-wrap:wrap}.table-footer>span{width:100%}.storefront{padding:25px 15px 36px}.store-heading{align-items:flex-start;flex-direction:column;margin-bottom:19px}.store-heading h1{font-size:25px}.store-controls{flex-wrap:wrap}.store-controls input{flex-basis:100%}.store-controls select{flex:1;min-width:0}.store-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.store-image-wrap{height:165px}.store-card-body{padding:12px}.store-name{font-size:13px;min-height:38px}.store-price{font-size:15px}.store-card-footer{align-items:flex-start;flex-direction:column}.store-card-actions{width:100%;justify-content:space-between}.cart-item{grid-template-columns:48px minmax(0,1fr)}.cart-item img{width:48px;height:48px}.cart-qty{grid-column:2;justify-self:start}}
 @media(max-width:390px){.stats{grid-template-columns:1fr 1fr}.stat-top{font-size:11px}.stat-icon{width:27px;height:27px}.stat-value{font-size:19px}}
 </style>
 </head>
@@ -174,6 +210,9 @@ dialog::backdrop{background:rgba(15,29,31,.45)}
           <button type="button" class="view-option" data-view="store" aria-pressed="false">Storefront</button>
         </div>
         <div class="topbar-right"><span class="live-dot" aria-hidden="true"></span>Connected to product catalog</div>
+        <div class="store-actions">
+          <button class="cart-open" id="cart-open" type="button" aria-haspopup="dialog">Cart <span class="cart-count" id="cart-count">0</span></button>
+        </div>
       </div>
     </div>
     <main class="content" id="overview">
@@ -249,7 +288,36 @@ dialog::backdrop{background:rgba(15,29,31,.45)}
     <p class="detail-description" id="detail-description"></p>
     <div class="detail-grid" id="detail-grid"></div>
   </div>
-  <div class="detail-actions"><button class="close-button" id="dialog-close" type="button">Close</button></div>
+  <div class="detail-actions"><button class="close-button" id="dialog-close" type="button">Close</button><button class="detail-cart" id="detail-add" type="button" hidden>Add to cart</button></div>
+</dialog>
+
+<dialog id="cart-dialog" aria-labelledby="cart-title">
+  <div class="detail-head"><h2 id="cart-title">Your cart</h2><button class="icon-button" id="cart-x" type="button" aria-label="Close cart">&times;</button></div>
+  <div class="cart-body">
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-summary" id="cart-summary"></div>
+    <p class="cart-note">Demo checkout only. No payment is processed and no order is submitted.</p>
+  </div>
+  <div class="cart-footer"><button class="close-button" id="cart-continue" type="button">Continue shopping</button><button class="checkout-button" id="checkout-open" type="button">Checkout</button></div>
+</dialog>
+
+<dialog id="checkout-dialog" aria-labelledby="checkout-title">
+  <div class="detail-head"><h2 id="checkout-title">Checkout</h2><button class="icon-button" id="checkout-x" type="button" aria-label="Close checkout">&times;</button></div>
+  <div class="checkout-dialog-body">
+    <form class="checkout-form" id="checkout-form">
+      <label for="customer-name">Name<input id="customer-name" name="name" autocomplete="name" required maxlength="100"></label>
+      <label for="customer-email">Email<input id="customer-email" name="email" type="email" autocomplete="email" required maxlength="254"></label>
+      <div class="checkout-total"><span>Order total</span><strong id="checkout-total">$0.00</strong></div>
+      <p class="checkout-note">This is a demo purchase. Your details are not sent or saved, and no payment is taken.</p>
+      <button class="checkout-button" type="submit">Place demo order</button>
+    </form>
+    <div class="checkout-confirmation" id="checkout-confirmation" hidden>
+      <span class="confirmation-icon" aria-hidden="true">✓</span>
+      <h3>Order confirmed</h3>
+      <p id="confirmation-message"></p>
+    </div>
+  </div>
+  <div class="detail-actions"><button class="close-button" id="checkout-close" type="button">Close</button></div>
 </dialog>
 
 <script>
@@ -264,6 +332,8 @@ let storePage = 0;
 let currentView = "admin";
 let catalogLoading = true;
 let catalogError = "";
+const cart = new Map();
+let activeDetailProduct = null;
 const $ = id => document.getElementById(id);
 const money = value => new Intl.NumberFormat("en-US", {style:"currency", currency:"USD", maximumFractionDigits:2}).format(value);
 const readable = value => String(value || "—").replace(/-/g, " ");
@@ -396,7 +466,20 @@ function renderStorefront() {
     details.className = "store-details";
     details.textContent = "View details";
     details.addEventListener("click", () => openDetails(product));
-    footer.append(availability, details);
+    const actions = document.createElement("div");
+    actions.className = "store-card-actions";
+    const add = document.createElement("button");
+    add.type = "button";
+    add.className = "add-button";
+    add.dataset.productId = String(product.id);
+    const inCart = cart.get(product.id) || 0;
+    const canAdd = product.stock > inCart;
+    add.textContent = product.stock <= 0 ? "Unavailable" : canAdd ? "Add to cart" : "Max in cart";
+    add.disabled = !canAdd;
+    add.setAttribute("aria-label", `${add.textContent}: ${product.title}`);
+    add.addEventListener("click", () => addToCart(product));
+    actions.append(details, add);
+    footer.append(availability, actions);
     body.append(name, meta, footer);
     card.append(imageWrap, body);
     grid.appendChild(card);
@@ -516,6 +599,7 @@ function createRow(product) {
 }
 
 function openDetails(product) {
+  activeDetailProduct = product;
   $("detail-img").src = product.images?.[0] || product.thumbnail;
   $("detail-img").alt = product.title;
   $("detail-name").textContent = product.title;
@@ -547,7 +631,160 @@ function openDetails(product) {
     item.append(name, content);
     grid.appendChild(item);
   });
+  const canAdd = currentView === "store" && product.stock > (cart.get(product.id) || 0);
+  $("detail-add").hidden = currentView !== "store";
+  $("detail-add").disabled = !canAdd;
+  $("detail-add").textContent = product.stock <= 0 ? "Unavailable" : canAdd ? "Add to cart" : "Max in cart";
   $("detail-dialog").showModal();
+}
+
+function cartQuantity() {
+  return [...cart.values()].reduce((sum, quantity) => sum + quantity, 0);
+}
+
+function updateCartCount() {
+  $("cart-count").textContent = cartQuantity().toLocaleString("en-US");
+}
+
+function addToCart(product) {
+  const quantity = cart.get(product.id) || 0;
+  if (quantity >= product.stock) return;
+  cart.set(product.id, quantity + 1);
+  updateCartCount();
+  renderStorefront();
+  if (activeDetailProduct?.id === product.id && $("detail-dialog").open) {
+    const canAdd = product.stock > (cart.get(product.id) || 0);
+    $("detail-add").disabled = !canAdd;
+    $("detail-add").textContent = canAdd ? "Add to cart" : "Max in cart";
+  }
+}
+
+function changeCartQuantity(productId, delta) {
+  const product = products.find(item => item.id === productId);
+  const quantity = cart.get(productId) || 0;
+  if (!product) {
+    cart.delete(productId);
+  } else {
+    const nextQuantity = quantity + delta;
+    if (nextQuantity <= 0) cart.delete(productId);
+    else if (nextQuantity <= product.stock) cart.set(productId, nextQuantity);
+  }
+  updateCartCount();
+  renderCart();
+  renderStorefront();
+}
+
+function renderCart() {
+  const container = $("cart-items");
+  container.replaceChildren();
+  let subtotal = 0;
+  const entries = [...cart.entries()].map(([id, quantity]) => ({
+    product: products.find(product => product.id === id),
+    quantity
+  })).filter(entry => entry.product);
+
+  if (!entries.length) {
+    const empty = document.createElement("div");
+    empty.className = "cart-empty";
+    empty.textContent = "Your cart is empty. Browse the storefront to add products.";
+    container.appendChild(empty);
+  }
+
+  entries.forEach(({product, quantity}) => {
+    subtotal += product.price * quantity;
+    const item = document.createElement("article");
+    item.className = "cart-item";
+    const image = document.createElement("img");
+    image.src = product.thumbnail;
+    image.alt = "";
+    const info = document.createElement("div");
+    const name = document.createElement("div");
+    name.className = "cart-item-name";
+    name.textContent = product.title;
+    const price = document.createElement("div");
+    price.className = "cart-item-price";
+    price.textContent = `${money(product.price)} each`;
+    const lineBottom = document.createElement("div");
+    lineBottom.className = "cart-line-bottom";
+    const lineTotal = document.createElement("strong");
+    lineTotal.textContent = money(product.price * quantity);
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "remove-item";
+    remove.textContent = "Remove";
+    remove.setAttribute("aria-label", `Remove ${product.title} from cart`);
+    remove.addEventListener("click", () => changeCartQuantity(product.id, -quantity));
+    lineBottom.append(lineTotal, remove);
+    info.append(name, price, lineBottom);
+
+    const controls = document.createElement("div");
+    controls.className = "cart-qty";
+    const decrement = document.createElement("button");
+    decrement.type = "button";
+    decrement.className = "qty-button";
+    decrement.textContent = "−";
+    decrement.setAttribute("aria-label", `Decrease ${product.title} quantity`);
+    decrement.addEventListener("click", () => changeCartQuantity(product.id, -1));
+    const count = document.createElement("span");
+    count.className = "qty-value";
+    count.textContent = String(quantity);
+    const increment = document.createElement("button");
+    increment.type = "button";
+    increment.className = "qty-button";
+    increment.textContent = "+";
+    increment.disabled = quantity >= product.stock;
+    increment.setAttribute("aria-label", `Increase ${product.title} quantity`);
+    increment.addEventListener("click", () => changeCartQuantity(product.id, 1));
+    controls.append(decrement, count, increment);
+    item.append(image, info, controls);
+    container.appendChild(item);
+  });
+
+  const summary = $("cart-summary");
+  summary.replaceChildren();
+  if (entries.length) {
+    const row = document.createElement("div");
+    row.className = "summary-row total";
+    const label = document.createElement("span");
+    label.textContent = "Subtotal";
+    const value = document.createElement("strong");
+    value.textContent = money(subtotal);
+    row.append(label, value);
+    summary.appendChild(row);
+  }
+  $("checkout-open").disabled = !entries.length;
+  $("checkout-total").textContent = money(subtotal);
+}
+
+function openCheckout() {
+  if (!cart.size) return;
+  $("cart-dialog").close();
+  $("checkout-form").reset();
+  $("checkout-form").hidden = false;
+  $("checkout-confirmation").hidden = true;
+  $("checkout-total").textContent = money(cartSubtotal());
+  $("checkout-dialog").showModal();
+}
+
+function cartSubtotal() {
+  return [...cart.entries()].reduce((sum, [id, quantity]) => {
+    const product = products.find(item => item.id === id);
+    return sum + (product ? product.price * quantity : 0);
+  }, 0);
+}
+
+function placeDemoOrder(event) {
+  event.preventDefault();
+  if (!$("checkout-form").reportValidity() || !cart.size) return;
+  const name = $("customer-name").value.trim();
+  const orderNumber = "DEMO-" + Date.now().toString(36).toUpperCase();
+  cart.clear();
+  updateCartCount();
+  renderCart();
+  renderStorefront();
+  $("checkout-form").hidden = true;
+  $("checkout-confirmation").hidden = false;
+  $("confirmation-message").textContent = `Thanks, ${name}. Your demo order ${orderNumber} is confirmed. No payment was taken and the order was not submitted.`;
 }
 
 async function loadProducts() {
@@ -609,6 +846,9 @@ $("dialog-close").addEventListener("click", () => $("detail-dialog").close());
 $("detail-dialog").addEventListener("click", event => {
   if (event.target === $("detail-dialog")) $("detail-dialog").close();
 });
+$("detail-add").addEventListener("click", () => {
+  if (activeDetailProduct) addToCart(activeDetailProduct);
+});
 document.querySelectorAll(".view-option").forEach(button => {
   button.addEventListener("click", () => setView(button.dataset.view));
 });
@@ -620,6 +860,23 @@ $("store-prev").addEventListener("click", () => {
 });
 $("store-next").addEventListener("click", () => {
   if ((storePage + 1) * 12 < storeProducts.length) { storePage++; renderStorefront(); }
+});
+$("cart-open").addEventListener("click", () => {
+  renderCart();
+  $("cart-dialog").showModal();
+});
+$("cart-x").addEventListener("click", () => $("cart-dialog").close());
+$("cart-continue").addEventListener("click", () => $("cart-dialog").close());
+$("cart-dialog").addEventListener("click", event => {
+  if (event.target === $("cart-dialog")) $("cart-dialog").close();
+});
+$("checkout-open").addEventListener("click", openCheckout);
+$("checkout-form").addEventListener("submit", placeDemoOrder);
+["checkout-x", "checkout-close"].forEach(id => {
+  $(id).addEventListener("click", () => $("checkout-dialog").close());
+});
+$("checkout-dialog").addEventListener("click", event => {
+  if (event.target === $("checkout-dialog")) $("checkout-dialog").close();
 });
 
 loadProducts();
