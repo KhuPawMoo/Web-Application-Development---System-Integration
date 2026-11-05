@@ -5,6 +5,21 @@ Purchases are written to a SQLite database on the PHP server, so signed-in
 admins can review orders from other browsers that use the same deployment.
 Checkout is a demo and does not process payments.
 
+## Project structure
+
+- `index.php` — front controller and request initialization
+- `app/config.php` — session settings, response headers, and shared constants
+- `app/helpers.php` — escaping, CSRF, flash messages, redirects, and links
+- `app/catalog.php` — product catalog integration and stock labels
+- `app/orders.php` — SQLite schema and order persistence
+- `app/actions.php` — form actions for sign-in, cart, checkout, and order review
+- `app/page-data.php` — filtering, sorting, pagination, and view data
+- `views/layout.php` — shared HTML shell and view selection
+- `views/admin/` — admin login, dashboard, inventory, and order templates
+- `views/partials/` — shared navigation templates
+- `views/storefront.php` — storefront, cart, and checkout templates
+- `styles.css` — shared responsive styling
+
 ## Requirements
 
 - PHP 8.1 or newer
